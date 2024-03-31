@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartoon Mirror</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.2) 100%), linear-gradient(to right, #ff758c, #ff7eb3); /* Beautiful background */
+            animation: changeBackground 20s infinite alternate; /* Animated background */
+        }
+        @keyframes changeBackground {
+            0% { background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.2) 100%), linear-gradient(to right, #ff758c, #ff7eb3); }
+            50% { background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.2) 100%), linear-gradient(to right, #8e2de2, #4a00e0); }
+            100% { background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(0,0,0,0.2) 100%), linear-gradient(to right, #ff758c, #ff7eb3); }
+        }
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            max-width: 80%;
+            width: 600px; /* Adjust the width as needed */
+            padding: 50px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Shadow effect */
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(-50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            font-size: 3em;
+            color: #333;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .cartoon-frame {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease forwards;
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        .cartoon-frame img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .cartoon-frame img:hover {
+            transform: scale(1.05);
+        }
+        .weather-info {
+            font-size: 1.2em;
+            color: #333;
+            margin-top: 20px;
+        }
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #333;
+        }
+        body.dark-mode .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+        }
+        body.dark-mode h1 {
+            color: #fff;
+        }
+        body.dark-mode .weather-info {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cartoon Mirror</h1>
+        <div class="cartoon-frame">
+            <img src="{{ url_for('cartoon_feed') }}" alt="Cartoon Frame">
+        </div>
+        <div class="weather-info">
+            {% if weather_data %}
+                <p>Weather in {{ weather_data.name }}:</p>
+                <p>Description: {{ weather_data.weather[0].description }}</p>
+                <p>Temperature: {{ weather_data.main.temp }} °C</p>
+                <p>Humidity: {{ weather_data.main.humidity }} %</p>
+                <p>Pressure: {{ weather_data.main.pressure }} hPa</p>
+                <p>Wind Speed: {{ weather_data.wind.speed }} m/s</p>
+            {% else %}
+                <p>No weather data available.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <button id="dark-mode-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+
+    <script>
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

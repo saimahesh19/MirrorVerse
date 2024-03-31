@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Mirror Verse</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f0f0; /* Light gray background */
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .container {
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+        padding: 20px;
+        border-radius: 10px;
+    }
+    h1 {
+        font-size: 3.5em;
+        color: #333; /* Dark gray text color */
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* Soft text shadow */
+    }
+    p {
+        font-size: 1.5em;
+        color: #333; /* Dark gray text color */
+        margin-bottom: 40px;
+    }
+    .button {
+        background-color: #6c5ce7;
+        color: white;
+        padding: 14px 28px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 1.2em;
+        transition: background-color 0.3s;
+        margin-right: 10px;
+        text-decoration: none;
+    }
+    .button:hover {
+        background-color: #4834d4;
+    }
+    .icon {
+        font-size: 3em;
+        margin-right: 10px;
+        color: #fff;
+    }
+</style>
+</head>
+<body>
+<a-scene>
+    <a-assets>
+        <img id="sky" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+    </a-assets>
+    <a-sky src="#sky"></a-sky>
+</a-scene>
+
+<div class="container">
+    <h1>Welcome to Mirror Verse</h1>
+    <p>Choose your mirror:</p>
+    <a href="/smart_mirror" class="button">
+        <i class="fas fa-magic icon"></i>Smart Mirror
+    </a>
+    <a href="/cartoon_mirror" class="button">
+        <i class="fas fa-paint-brush icon"></i>Cartoon Mirror
+    </a>
+</div>
+
+</body>
+</html>
